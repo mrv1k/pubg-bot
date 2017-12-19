@@ -1,0 +1,73 @@
+{
+  "low": "See a house? Drop there.",
+  "school": "school",
+
+  "medium": {
+    "zharki": "zharki",
+    "shooting_range": "shooting_range",
+    "severny": "severny",
+    "kameshki": "kameshki",
+    "rozhok": "rozhok",
+    "mansion": "mansion",
+    "lipovka": "lipovka",
+    "water_town": "water_town",
+    "ruins": "ruins",
+    "gatka": "gatka",
+    "ferry_pier": "ferry_pier",
+    "mylta": "mylta",
+    "geogropol": "geogropol"
+  },
+  "high": {
+    "stalber": "stalber",
+    "yasnaya_polyana": "yasnaya polyana",
+    "apartments": "apartments",
+    "school": "school",
+    "geogropol_containers": "georgopol-containers",
+    "geogropol_houses": "georgopol-houses",
+    "hospital": "hospital",
+    "pochinki": "pochinki",
+    "sosnovka_military_base": "sosnovka military base",
+    "novorepnoye": "novorepnoye",
+    "shelter": "shelter",
+    "prison": "prison",
+    "mylta_power": "mylta power",
+    "primorks": "primorks",
+    "sosnovka military base": "sosnovka military base",
+    "novorepnoye": "novorepnoye"
+  },
+  "military": {
+    "geogropol_containers": "georgopol-containers",
+    "geogropol_houses": "georgopol-houses",
+    "sosnovka_military_base": "sosnovka military base",
+    "novorepnoye": "novorepnoye",
+    "mylta_power": "mylta power",
+    "shelter": "shelter",
+    "prison": "prison"
+  },
+  "military_small": {
+    "novorepnoye_radio": "novorepnoye radio",
+    "primorks": "primorks",
+    "gatka_radio": "gatka radio",
+    "shooting_range": "shooting range",
+    "stalber": "stalber",
+    "kameshki": "kameshki"
+  },
+  "any_named": {
+    "georgopol": "georgopol",
+    "pochinki": "pochinki",
+    "yasnaya_polyana": "yasnaya_polyana",
+    "novorepnoye": "novorepnoye",
+    "sosnovka_island": "sosnovka_island",
+    "sosnovka_military_base": "sosnovka_military_base",
+    "mylta": "mylta",
+    "mylta_power": "mylta_power",
+    "gatka": "gatka",
+    "kameshki": "kameshki",
+    "lipovka": "lipovka",
+    "primorsk": "primorsk",
+    "rozhok": "rozhok",
+    "severny": "severny",
+    "stalber": "stalber",
+    "zharki": "zharki"
+  }
+}
