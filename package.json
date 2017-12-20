@@ -4,9 +4,14 @@
   "description": "PUBG drop bot right in discord",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch bot.js --exec \"node bot\""
   },
-  "keywords": ["dicsord", "discord.js", "bot"],
+  "keywords": [
+    "dicsord",
+    "discord.js",
+    "bot"
+  ],
   "author": "Khotimchenko Viktor",
   "license": "ISC",
   "dependencies": {
@@ -14,6 +19,7 @@
   },
   "devDependencies": {
     "eslint": "^4.13.1",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "nodemon": "^1.13.3"
   }
 }
