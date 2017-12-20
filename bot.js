@@ -3,7 +3,7 @@ const auth = require('./auth.json');
 const erangel = require('./maps/erangel.json');
 const client = new Discord.Client();
 
-const pre = '-';
+const pre = '-p';
 
 // client.on('ready', () => {
 //   console.log('Bot in.');
@@ -26,20 +26,19 @@ client.on('message', (message) => {
   if (!message.content.startsWith(pre) || message.author.bot) return;
 
   let arr;
-  let r = Math.random();
   const c = message.content;
-  if (c === `${pre}military` || c === `${pre}mili`) {
+  if (c === `${pre} military` || c === `${pre} mili`) {
     arr = Object.values(erangel.military);
-  } else if (c === `${pre}military small`) {
+  } else if (c === `${pre} military small`) {
     arr = Object.values(erangel.military_small);
-  } else if (c === `${pre}high` || c === `${pre}h`) {
+  } else if (c === `${pre} high` || c === `${pre} h`) {
     arr = Object.values(erangel.high);
-  } else if (c === `${pre}medium` || c === `${pre}m`) {
+  } else if (c === `${pre} medium` || c === `${pre} m`) {
     arr = Object.values(erangel.medium);
-  } else if (c === `${pre}low`) {
+  } else if (c === `${pre} low`) {
     message.reply(erangel.low);
     return;
-  } else if (c === `${pre}pubg-bot`) {
+  } else if (c === `${pre}hello`) {
     message.channel.send([
       ' Type "-" and any of the following e.g: -mili',
       'military       || mili',
@@ -52,9 +51,9 @@ client.on('message', (message) => {
   } else {
     return;
   }
-  r = Math.round(r * arr.length);
-  console.log(r, arr[r]);
-  message.reply(arr[r]);
+  const rand = Math.round(Math.random() * arr.length);
+  console.log(arr.length, arr[rand], rand);
+  message.reply(arr[rand]);
 });
 
 client.login(auth.token);
