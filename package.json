@@ -8,7 +8,7 @@
     "start": "nodemon --watch bot.js --exec \"node bot\""
   },
   "keywords": [
-    "dicsord",
+    "discord",
     "discord.js",
     "bot"
   ],

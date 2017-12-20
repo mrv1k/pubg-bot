@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const auth = require('./auth.json');
 const erangel = require('./erangel.json');
-
 const client = new Discord.Client();
+
 const pre = '-';
 
-client.on('ready', () => {
-  console.log('Bot in.');
-  console.log(`Users: ${client.users.size}. Channels: ${client.channels.size}. Guilds: ${client.guilds.size}.`);
-});
+// client.on('ready', () => {
+//   console.log('Bot in.');
+//   console.log(`Users: ${client.users.size}. Channels: ${client.channels.size}. Guilds: ${client.guilds.size}.`);
+// });
 
 client.on('guildCreate', (guild) => {
   console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
@@ -52,7 +52,8 @@ client.on('message', (message) => {
   } else {
     return;
   }
-  r = Math.round(r);
+  r = Math.round(r * arr.length);
+  console.log(r, arr[r]);
   message.reply(arr[r]);
 });
 
