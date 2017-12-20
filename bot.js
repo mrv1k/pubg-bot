@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const auth = require('./auth.json');
-const erangel = require('./erangel.json');
+const erangel = require('./maps/erangel.json');
 const client = new Discord.Client();
 
 const pre = '-';
