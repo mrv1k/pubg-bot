@@ -1,15 +1,19 @@
 {
   "name": "pubg-bot",
   "version": "1.0.0",
-  "description": "PUBG roulette",
+  "description": "PUBG drop bot right in discord",
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "Vik",
+  "keywords": ["dicsord", "discord.js", "bot"],
+  "author": "Khotimchenko Viktor",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-config-google": "^0.9.1"
   }
 }
