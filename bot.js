@@ -26,19 +26,20 @@ client.on('message', (message) => {
   if (!message.content.startsWith(pre) || message.author.bot) return;
 
   let arr;
-  const c = message.content;
-  if (c === `${pre} military` || c === `${pre} mili`) {
+  const cArr = message.content.split(' ');
+  c = cArr[1];
+  if (c === 'military' || c === 'mili') {
     arr = Object.values(erangel.military);
-  } else if (c === `${pre} military small`) {
+  } else if (c === 'military small') {
     arr = Object.values(erangel.military_small);
-  } else if (c === `${pre} high` || c === `${pre} h`) {
+  } else if (c === 'high' || c === 'h') {
     arr = Object.values(erangel.high);
-  } else if (c === `${pre} medium` || c === `${pre} m`) {
+  } else if (c === 'medium' || c === 'm') {
     arr = Object.values(erangel.medium);
-  } else if (c === `${pre} low`) {
+  } else if (c === 'low') {
     message.reply(erangel.low);
     return;
-  } else if (c === `${pre} help` || c === `${pre} halp`) {
+  } else if (c === 'help' || c === 'halp') {
     message.author.send(
       new Discord.RichEmbed()
       .setColor('#16a085')
