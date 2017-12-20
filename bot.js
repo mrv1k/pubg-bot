@@ -12,7 +12,7 @@ const pre = '-p';
 
 client.on('guildCreate', (guild) => {
   console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
-  guild.channels.find('name', 'general').send('PUBG roulette initialize!');
+  guild.channels.find('name', 'general').send('``-p help`` to see options');
   client.user.setGame(`on ${client.guilds.size} servers`);
 });
 
@@ -38,15 +38,28 @@ client.on('message', (message) => {
   } else if (c === `${pre} low`) {
     message.reply(erangel.low);
     return;
-  } else if (c === `${pre}hello`) {
-    message.channel.send([
-      ' Type "-" and any of the following e.g: -mili',
-      'military       || mili',
-      'high             || h',
-      'medium      || m',
+  } else if (c === `${pre} help` || c === `${pre} halp`) {
+    message.author.send(
+      new Discord.RichEmbed()
+      .setColor('#16a085')
+      .setDescription(`
+__**Random A Drop Location**__
+**-p military** (-p mili)
+**-p high** (-p h)
+**-p medium** (-p m)
+**-p military small**
 
-      'or military small',
-    ]);
+__**List All Possible Drop Locations**__ (Early access coming soon™)
+**-pl military**
+**-pl high**
+**-pl medium**
+**-pl military small**
+
+**Other**
+**-p help**
+      `)
+      .setFooter(`High/Medium from pubgmap.io, Military from imgur.com/a/uEGe5`)
+  );
     return;
   } else {
     return;
@@ -55,5 +68,6 @@ client.on('message', (message) => {
   console.log(arr.length, arr[rand], rand);
   message.reply(arr[rand]);
 });
+
 
 client.login(auth.token);
