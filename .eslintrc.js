@@ -10,5 +10,6 @@ module.exports = {
         'max-len': [2, {
             ignorePattern: 'console\.log',
           }],
+          "linebreak-style": 0
     }
 };

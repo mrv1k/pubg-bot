@@ -17,9 +17,9 @@ client.on('guildDelete', (guild) => {
   client.user.setGame(`on ${client.guilds.size} servers`);
 });
 
-client.on('debug', e => console.log(chalk.blue(e)));
-client.on('warn', e => console.warn(chalk.bgYellow(e)));
-client.on('error', e => console.error(chalk.bgRed(e)));
+client.on('debug', (e) => console.log(chalk.blue(e)));
+client.on('warn', (e) => console.warn(chalk.bgYellow(e)));
+client.on('error', (e) => console.error(chalk.bgRed(e)));
 
 
 client.on('message', (message) => {
