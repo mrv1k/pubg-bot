@@ -1,14 +1,10 @@
+const chalk = require('chalk');
 const Discord = require('discord.js');
 const auth = require('./auth.json');
 const erangel = require('./maps/erangel.json');
 const client = new Discord.Client();
 
 const pre = '-p';
-
-// client.on('ready', () => {
-//   console.log('Bot in.');
-//   console.log(`Users: ${client.users.size}. Channels: ${client.channels.size}. Guilds: ${client.guilds.size}.`);
-// });
 
 client.on('guildCreate', (guild) => {
   console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
@@ -17,9 +13,13 @@ client.on('guildCreate', (guild) => {
 });
 
 client.on('guildDelete', (guild) => {
-  guild.channels.find('name', 'general').send('See ya!');
+  console.log(`I've left ${guild.name}`);
   client.user.setGame(`on ${client.guilds.size} servers`);
 });
+
+client.on('debug', e => console.log(chalk.blue(e)));
+client.on('warn', e => console.warn(chalk.bgYellow(e)));
+client.on('error', e => console.error(chalk.bgRed(e)));
 
 
 client.on('message', (message) => {

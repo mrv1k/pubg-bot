@@ -15,6 +15,7 @@
   "author": "Khotimchenko Viktor",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^2.3.0",
     "discord.js": "^11.2.1"
   },
   "devDependencies": {
