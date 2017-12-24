@@ -44,6 +44,14 @@ client.on('message', (message) => {
       new Discord.RichEmbed()
       .setColor('#16a085')
       .setDescription(`
+**CURRENTLY NOT WORKING**
+-p <map> <loot level>
+Possible options
+[-E-<location(s)>|--exclude-<location(s)>]
+[-L|--list]
+[-T|--time]
+**CURRENTLY NOT WORKING**
+
 __**Random A Drop Location**__
 **-p military** (-p mili)
 **-p high** (-p h)
