@@ -44,25 +44,22 @@ client.on('message', (message) => {
       new Discord.RichEmbed()
       .setColor('#16a085')
       .setDescription(`
-**CURRENTLY NOT WORKING**
 -p <map> <loot level>
-Possible options
+
+**Only erangel drops currently available so <map> is already erangel, drop it**
+**-p <loot level>**
+
+
+Possible options currently unavailable
 [-E-<location(s)>|--exclude-<location(s)>]
 [-L|--list]
 [-T|--time]
-**CURRENTLY NOT WORKING**
 
-__**Random A Drop Location**__
-**-p military** (-p mili)
-**-p high** (-p h)
-**-p medium** (-p m)
-**-p military small**
-
-__**List All Possible Drop Locations**__ (Early access coming soon™)
-**-pl military**
-**-pl high**
-**-pl medium**
-**-pl military small**
+<loot level>:
+  **[-military|--mili]** :: high chance of military loot spawn
+  **[-high|--h]**            :: high risk, high reward
+  **[-medium|--m]**    :: medium risk, medium RNG
+  **[-military small]** :: small chance of military loot spawn
 
 **Other**
 **-p help**
