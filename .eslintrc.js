@@ -9,6 +9,7 @@ module.exports = {
     "rules": {
         'max-len': [2, {
             ignorePattern: 'console\.log',
+            "code": 100,
           }],
           "linebreak-style": 0
     }
