@@ -35,30 +35,36 @@ function genDropLoc(map, lootLvl) {
 client.on('message', (message) => {
   if (!message.content.startsWith(pre) || message.author.bot) return;
 
-  const cArr = message.content.substring(3).split(' ')[0];
+  const cArr = message.content.substring(3).split(' ');
   let dropLoc;
-  if (cArr === 'military' || cArr === 'mili') {
-    dropLoc = genDropLoc(erangel, 'military');
-  } else if (cArr === 'military small') {
-    dropLoc = genDropLoc(erangel, 'military_small');
-  } else if (cArr === 'high' || cArr === 'h') {
-    dropLoc = genDropLoc(erangel, 'high');
-  } else if (cArr === 'medium' || cArr === 'm') {
-    dropLoc = genDropLoc(erangel, 'medium');
-  } else if (cArr === 'low') {
-    message.reply(erangel.low);
+  let mapJSON;
+  if (cArr[0] === 'e' || cArr[0] === 'erangel' ) {
+    mapJSON = erangel;
+  } else {
+    // set erangel by default
+    cArr.unshift('e');
+    mapJSON = erangel;
+  }
+
+  if (cArr[1] === 'military' || cArr[1] === 'mili') {
+    dropLoc = genDropLoc(mapJSON, 'military');
+  } else if (cArr[1] === 'military small') {
+    dropLoc = genDropLoc(mapJSON, 'military_small');
+  } else if (cArr[1] === 'high' || cArr[1] === 'h') {
+    dropLoc = genDropLoc(mapJSON, 'high');
+  } else if (cArr[1] === 'medium' || cArr[1] === 'm') {
+    dropLoc = genDropLoc(mapJSON, 'medium');
+  } else if (cArr[1] === 'low') {
+    message.reply(mapJSON.low);
     return;
-  } else if (cArr === 'help' || cArr === 'halp') {
+  } else if (cArr[1] === 'help' || cArr[1] === 'halp') {
     message.channel.send(
       new Discord.RichEmbed()
       .setColor('#16a085')
       .setDescription(`
--p <map> <loot level>
+-p <loot level>
 
-**Only erangel drops currently available so <map> is already erangel, drop it**
-**-p <loot level>**
-
-Possible options currently unavailable
+Possible options **currently unavailable**
 [-E-<location(s)>|--exclude-<location(s)>]
 [-L|--list]
 [-T|--time]
