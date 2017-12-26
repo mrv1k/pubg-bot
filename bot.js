@@ -21,26 +21,35 @@ client.on('debug', (e) => console.log(chalk.blue(e)));
 client.on('warn', (e) => console.warn(chalk.bgYellow(e)));
 client.on('error', (e) => console.error(chalk.bgRed(e)));
 
+/**
+ * @param {object} map Map with drop locations
+ * @param {string} lootLvl Desired loot level
+ * @return {string} Randomized drop location using pure random
+ */
+function genDropLoc(map, lootLvl) {
+  const values = Object.values(map[lootLvl]);
+  const rand = Math.round(Math.random() * values.length);
+  return values[rand];
+}
 
 client.on('message', (message) => {
   if (!message.content.startsWith(pre) || message.author.bot) return;
 
-  let arr;
-  const cArr = message.content.split(' ');
-  c = cArr[1];
-  if (c === 'military' || c === 'mili') {
-    arr = Object.values(erangel.military);
-  } else if (c === 'military small') {
-    arr = Object.values(erangel.military_small);
-  } else if (c === 'high' || c === 'h') {
-    arr = Object.values(erangel.high);
-  } else if (c === 'medium' || c === 'm') {
-    arr = Object.values(erangel.medium);
-  } else if (c === 'low') {
+  const cArr = message.content.substring(3).split(' ')[0];
+  let dropLoc;
+  if (cArr === 'military' || cArr === 'mili') {
+    dropLoc = genDropLoc(erangel, 'military');
+  } else if (cArr === 'military small') {
+    dropLoc = genDropLoc(erangel, 'military_small');
+  } else if (cArr === 'high' || cArr === 'h') {
+    dropLoc = genDropLoc(erangel, 'high');
+  } else if (cArr === 'medium' || cArr === 'm') {
+    dropLoc = genDropLoc(erangel, 'medium');
+  } else if (cArr === 'low') {
     message.reply(erangel.low);
     return;
-  } else if (c === 'help' || c === 'halp') {
-    message.author.send(
+  } else if (cArr === 'help' || cArr === 'halp') {
+    message.channel.send(
       new Discord.RichEmbed()
       .setColor('#16a085')
       .setDescription(`
@@ -48,7 +57,6 @@ client.on('message', (message) => {
 
 **Only erangel drops currently available so <map> is already erangel, drop it**
 **-p <loot level>**
-
 
 Possible options currently unavailable
 [-E-<location(s)>|--exclude-<location(s)>]
@@ -70,9 +78,7 @@ Possible options currently unavailable
   } else {
     return;
   }
-  const rand = Math.round(Math.random() * arr.length);
-  console.log(arr.length, arr[rand], rand);
-  message.reply(arr[rand]);
+  message.reply(dropLoc);
 });
 
 
