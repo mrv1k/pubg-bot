@@ -82,6 +82,7 @@ Possible options **currently unavailable**
   );
     return;
   } else {
+    message.reply(`'${cArr.join(' ')}' is not a pubg-bot command. See 'p --help'.`);
     return;
   }
   message.reply(dropLoc);
