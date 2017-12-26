@@ -36,7 +36,7 @@ client.on('message', (message) => {
   if (!message.content.startsWith(pre) || message.author.bot) return;
 
   const cArr = message.content.substring(3).split(' ');
-  let dropLoc;
+  let command;
   let mapJSON;
   if (cArr[0] === 'e' || cArr[0] === 'erangel' ) {
     mapJSON = erangel;
@@ -45,19 +45,34 @@ client.on('message', (message) => {
     cArr.unshift('e');
     mapJSON = erangel;
   }
+  console.log(cArr);
 
-  if (cArr[1] === 'military' || cArr[1] === 'mili') {
-    dropLoc = genDropLoc(mapJSON, 'military');
-  } else if (cArr[1] === 'military small') {
-    dropLoc = genDropLoc(mapJSON, 'military_small');
-  } else if (cArr[1] === 'high' || cArr[1] === 'h') {
-    dropLoc = genDropLoc(mapJSON, 'high');
-  } else if (cArr[1] === 'medium' || cArr[1] === 'm') {
-    dropLoc = genDropLoc(mapJSON, 'medium');
-  } else if (cArr[1] === 'low') {
-    message.reply(mapJSON.low);
-    return;
-  } else if (cArr[1] === 'help' || cArr[1] === 'halp') {
+  if (cArr[2] === '-L' || cArr[2] === '--list') {
+    if (cArr[1] === 'military' || cArr[1] === 'mili') {
+      command = Object.values(mapJSON['military']);
+    } else if (cArr[1] === 'military small') {
+      command = Object.values(mapJSON['military_small']);
+    } else if (cArr[1] === 'high' || cArr[1] === 'h') {
+      command = Object.values(mapJSON['high']);
+    } else if (cArr[1] === 'medium' || cArr[1] === 'm') {
+      command = Object.values(mapJSON['medium']).join(', ');
+    }
+  } else {
+    if (cArr[1] === 'military' || cArr[1] === 'mili') {
+      command = genDropLoc(mapJSON, 'military');
+    } else if (cArr[1] === 'military small') {
+      command = genDropLoc(mapJSON, 'military_small');
+    } else if (cArr[1] === 'high' || cArr[1] === 'h') {
+      command = genDropLoc(mapJSON, 'high');
+    } else if (cArr[1] === 'medium' || cArr[1] === 'm') {
+      command = genDropLoc(mapJSON, 'medium');
+    } else if (cArr[1] === 'low') {
+      message.reply(mapJSON.low);
+      return;
+    }
+  }
+
+  if (cArr[1] === 'help' || cArr[1] === 'halp') {
     message.channel.send(
       new Discord.RichEmbed()
       .setColor('#16a085')
@@ -85,7 +100,7 @@ Possible options **currently unavailable**
     message.reply(`'${cArr.join(' ')}' is not a pubg-bot command. See 'p --help'.`);
     return;
   }
-  message.reply(dropLoc);
+  message.reply(command);
 });
 
 
