@@ -57,6 +57,8 @@ client.on('message', (message) => {
     } else if (cArr[1] === 'medium' || cArr[1] === 'm') {
       command = Object.values(mapJSON['medium']).join(', ');
     }
+    message.reply(`"${cArr[1]}" contains:\n${command}.`);
+    return;
   } else {
     if (cArr[1] === 'military' || cArr[1] === 'mili') {
       command = genDropLoc(mapJSON, 'military');
