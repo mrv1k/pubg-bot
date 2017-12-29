@@ -72,6 +72,8 @@ client.on('message', (message) => {
       message.reply(mapJSON.low);
       return;
     }
+    message.reply(command);
+    return;
   }
 
   if (cArr[1] === 'help' || cArr[1] === 'halp') {
@@ -102,7 +104,6 @@ Possible options **currently unavailable**
     message.reply(`'${cArr.join(' ')}' is not a pubg-bot command. See 'p --help'.`);
     return;
   }
-  message.reply(command);
 });
 
 
