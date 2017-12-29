@@ -38,7 +38,7 @@ client.on('message', (message) => {
   const cArr = message.content.substring(3).split(' ');
   let command;
   let mapJSON;
-  if (cArr[0] === 'e' || cArr[0] === 'erangel' ) {
+  if (cArr[0] === 'e' || cArr[0] === 'erangel') {
     mapJSON = erangel;
   } else {
     // set erangel by default
@@ -59,7 +59,7 @@ client.on('message', (message) => {
     }
     message.reply(`"${cArr[1]}" contains:\n${command}.`);
     return;
-  } else {
+  } else if (cArr[2] === undefined) {
     if (cArr[1] === 'military' || cArr[1] === 'mili') {
       command = genDropLoc(mapJSON, 'military');
     } else if (cArr[1] === 'military small') {
@@ -71,34 +71,33 @@ client.on('message', (message) => {
     } else if (cArr[1] === 'low') {
       message.reply(mapJSON.low);
       return;
+    } else if (cArr[1] === 'help' || cArr[1] === 'halp') {
+      message.channel.send(
+        new Discord.RichEmbed()
+          .setColor('#16a085')
+          .setDescription(`
+**-p <loot level> [options]** - Choose a random location based on loot level
+
+<loot level>
+  **<-military|--mili>** :: high chance of military loot spawn
+  **<-high|--h>**            :: high risk, high reward
+  **<-medium|--m>**    :: medium risk, medium RNG
+  **<-military small>** :: small chance of military loot spawn
+
+Options
+  **[-L|--list]**            :: Display possible options for selected group
+  Unavailable (coming soon)
+  [-T|--time]         :: Delay the results by N seconds
+  [-E-<location(s)>|--exclude-<location(s)>]
+
+Other:
+  -p help
+        `)
+          .setFooter(`High/Medium from pubgmap.io, Military from imgur.com/a/uEGe5`)
+      );
+      return;
     }
     message.reply(command);
-    return;
-  }
-
-  if (cArr[1] === 'help' || cArr[1] === 'halp') {
-    message.channel.send(
-      new Discord.RichEmbed()
-      .setColor('#16a085')
-      .setDescription(`
--p <loot level>
-
-Possible options **currently unavailable**
-[-E-<location(s)>|--exclude-<location(s)>]
-[-L|--list]
-[-T|--time]
-
-<loot level>:
-  **[-military|--mili]** :: high chance of military loot spawn
-  **[-high|--h]**            :: high risk, high reward
-  **[-medium|--m]**    :: medium risk, medium RNG
-  **[-military small]** :: small chance of military loot spawn
-
-**Other**
-**-p help**
-      `)
-      .setFooter(`High/Medium from pubgmap.io, Military from imgur.com/a/uEGe5`)
-  );
     return;
   } else {
     message.reply(`'${cArr.join(' ')}' is not a pubg-bot command. See 'p --help'.`);
