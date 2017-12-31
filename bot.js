@@ -59,7 +59,7 @@ client.on('message', (message) => {
     }
     message.reply(`"${cArr[1]}" contains:\n${command}.`);
     return;
-  } else if (cArr[2] === undefined) {
+  } else if (cArr[2] === undefined || (cArr[2] === '-T' || cArr[2] === '--time')) {
     if (cArr[1] === 'military' || cArr[1] === 'mili') {
       command = genDropLoc(mapJSON, 'military');
     } else if (cArr[1] === 'military small') {
@@ -86,8 +86,8 @@ client.on('message', (message) => {
 
 Options
   **[-L|--list]**            :: Display possible options for selected group
+  **[-T n|--time n]**         :: Delay the results by n seconds (n can be from 1 to 10)
   Unavailable (coming soon)
-  [-T|--time]         :: Delay the results by N seconds
   [-E-<location(s)>|--exclude-<location(s)>]
 
 Other:
@@ -95,10 +95,23 @@ Other:
         `)
           .setFooter(`High/Medium from pubgmap.io, Military from imgur.com/a/uEGe5`)
       );
-      return;
+      return; // help return
     }
-    message.reply(command);
-    return;
+    if (cArr[2] === '-T' || cArr[2] === '--time') {
+      if (cArr[3] > 10) {
+        message.reply(`Woah. Calm down there cowboy. Limited ${cArr[3]} to 10 seconds.`);
+        cArr[3] = 10;
+      } else if (cArr[3] <= 0) {
+        message.reply(`Negative time? Really? Come on. Changed ${cArr[3]} to 0 seconds.`);
+        cArr[3] = 0;
+      }
+      setTimeout(() => {
+        message.reply(command);
+      }, Math.round(cArr[3]) * 1000);
+    } else {
+      message.reply(command);
+    }
+    return; // undefined/default return
   } else {
     message.reply(`'${cArr.join(' ')}' is not a pubg-bot command. See 'p --help'.`);
     return;
