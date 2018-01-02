@@ -85,10 +85,11 @@ client.on('message', (message) => {
   **<-military small>** :: small chance of military loot spawn
 
 Options
-  **[-L|--list]**            :: Display possible options for selected group
-  **[-T n|--time n]**         :: Delay the results by n seconds (n can be from 1 to 10)
-  Unavailable (coming soon)
-  [-E-<location(s)>|--exclude-<location(s)>]
+  **[-L|--list]**                 :: Display possible options for selected group
+  **[-T n|--time n]**       :: Delay the results by n seconds (n can be from 1 to 10)
+  Unavailable
+  **[-E place|**                 :: Exclude location from the drop list.
+     **--exclude place]** :: Exclude multiple by listing them through comma (1,2,3)
 
 Other:
   -p help
