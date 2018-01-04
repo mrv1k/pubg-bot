@@ -24,10 +24,19 @@ client.on('error', (e) => console.error(chalk.bgRed(e)));
 /**
  * @param {object} map Map with drop locations
  * @param {string} lootLvl Desired loot level
- * @return {string} Randomized drop location using pure random
+ * @param {string|array} exclude Location to exclude from the list
+ * @return {string} Randomized drop location using random
  */
-function genDropLoc(map, lootLvl) {
-  const values = Object.values(map[lootLvl]);
+function genDropLoc(map, lootLvl, exclude) {
+  let values = {};
+  if (exclude) {
+    Object.assign(values, map[lootLvl]);
+    delete values[exclude.toLowerCase()];
+    console.log(values);
+  } else {
+    values = Object.values(map[lootLvl]);
+  }
+
   const rand = Math.round(Math.random() * values.length);
   return values[rand];
 }
@@ -59,6 +68,20 @@ client.on('message', (message) => {
     }
     message.reply(`"${cArr[1]}" contains:\n${command}.`);
     return;
+  } else if ((cArr[2] === '-E' || cArr[2] === '--exclude')
+    && (/[a-z]/i.test(cArr[3]) || Array.isArray(cArr[3]))
+  ) {
+    if (cArr[1] === 'military' || cArr[1] === 'mili') {
+      command = genDropLoc(mapJSON, 'military', cArr[3]);
+    } else if (cArr[1] === 'military small') {
+      command = genDropLoc(mapJSON, 'military_small', cArr[3]);
+    } else if (cArr[1] === 'high' || cArr[1] === 'h') {
+      command = genDropLoc(mapJSON, 'high', cArr[3]);
+    } else if (cArr[1] === 'medium' || cArr[1] === 'm') {
+      command = genDropLoc(mapJSON, 'medium', cArr[3]);
+    }
+    console.log(command);
+    message.reply(command);
   } else if (cArr[2] === undefined || (cArr[2] === '-T' || cArr[2] === '--time')) {
     if (cArr[1] === 'military' || cArr[1] === 'mili') {
       command = genDropLoc(mapJSON, 'military');
